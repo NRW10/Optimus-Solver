@@ -66,3 +66,14 @@ You can download the dataset from [https://huggingface.co/datasets/udell-lab/NLP
 
 
 
+
+
+## API setup
+
+This codebase now uses **Groq** for LLM calls in the main modeling pipeline.
+Set the API key before running:
+
+```bash
+export GROQ_API_KEY="<your-groq-key>"
+```
+
