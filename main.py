@@ -29,8 +29,7 @@ if __name__ == "__main__":
     DEV_MODE = args.devmode
     RAG_MODE = args.rag_mode
     ERROR_CORRECTION = True
-    MODEL = "gpt-4o"
-    # MODEL = "llama3-70b-8192"
+    MODEL = "llama3-70b-8192"
     ##############################################
 
     if DEV_MODE:

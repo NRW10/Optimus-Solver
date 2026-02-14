@@ -1,14 +1,13 @@
 import os
 import json
 from groq import Groq
-import openai
 
-groq_key = "###"
-openai_key = "###"
-openai_org = "###"
 
-groq_client = Groq(api_key=groq_key)
-open_ai_client = openai.Client(api_key=openai_key, organization=openai_org)
+def _get_groq_client():
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if not groq_api_key:
+        raise ValueError("GROQ_API_KEY environment variable is not set")
+    return Groq(api_key=groq_api_key)
 
 
 def extract_json_from_end(text):
@@ -108,12 +107,11 @@ def extract_list_from_end(text):
     return jj
 
 
-# "llama3-70b-8192"
 def get_response(prompt, model="llama3-70b-8192"):
-    if model == "llama3-70b-8192":
-        client = groq_client
-    else:
-        client = open_ai_client
+    if model.lower().startswith("gpt"):
+        raise ValueError("OpenAI models are not supported in this setup. Please use a Groq-hosted model name.")
+
+    client = _get_groq_client()
     chat_completion = client.chat.completions.create(
         messages=[
             {
